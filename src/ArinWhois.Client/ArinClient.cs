@@ -16,8 +16,8 @@ namespace ArinWhois.Client
             {
                 var query = string.Format("net/NET-{0}-1/pft", ip.Replace(".", "-"));
                 var response = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                var json = JSON.Deserialize<Response>(response);
-                return json;
+                //var result = JSON.DeserializeDynamic(response);
+                return  JSON.Deserialize<Response>(response);
             }
         }
 

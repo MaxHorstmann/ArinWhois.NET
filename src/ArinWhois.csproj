@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\ArinClient.cs" />
+    <Compile Include="ArinWhois.Client\ArinClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Response.cs" />
+    <Compile Include="ArinWhois.Model\Response.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
