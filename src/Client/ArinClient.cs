@@ -19,10 +19,9 @@ namespace ArinWhois.Client
             }
         }
 
-
         private static Uri GetRequestUrl(string query)
         {
-            return new Uri(string.Format("{0}/{1}.json", BaseUrl, query)));
+            return new Uri(string.Format("{0}/{1}.json", BaseUrl, query));
         }
         
 

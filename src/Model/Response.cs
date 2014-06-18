@@ -1,4 +1,6 @@
-﻿namespace ArinWhois.Model
+﻿using System;
+
+namespace ArinWhois.Model
 {
     public class Response
     {
@@ -9,7 +11,8 @@
 
     public class Net
     {
-        public object registrationDate { get; set; }
+        public string termsOfUse { get; set; }
+        public DateTime registrationDate { get; set; }
     }
 
     public class Org
