@@ -1,6 +1,6 @@
 ﻿namespace ArinWhois.Client
 {
-    public class Client
+    public class ArinClient
     {
         private const string BaseUrl = "http://whois.arin.net/rest";
 

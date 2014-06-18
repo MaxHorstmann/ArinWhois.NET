@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\Client.cs" />
+    <Compile Include="Client\ArinClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Response.cs" />
   </ItemGroup>
