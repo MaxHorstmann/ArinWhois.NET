@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using ArinWhois.Model;
+using Jil;
 
 namespace ArinWhois.Client
 {
@@ -15,7 +16,8 @@ namespace ArinWhois.Client
             {
                 var query = string.Format("net/NET-{0}-1/pft", ip.Replace(".", "-"));
                 var response = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                return null; // TODO toJSON
+                var json = JSON.Deserialize<Response>(response);
+                return json;
             }
         }
 
