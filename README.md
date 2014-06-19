@@ -1,5 +1,5 @@
-ARIN-Whois-RWS.NET
-==================
+ARIN-Whois.NET
+==============
 
 .NET client for ARIN's [Whois RESTful Web Service](https://www.arin.net/resources/whoisrws/index.html), the API to accessing ARIN's Whois data.
 
