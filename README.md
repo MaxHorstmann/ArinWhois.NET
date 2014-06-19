@@ -31,7 +31,7 @@ Sample Usage
 If you don't wanna do async, replace the second line with 
 
 
-    var response = await arinClient.QueryAsync(IPAddress.Parse("69.63.176.0")).Result;
+    var response = arinClient.QueryAsync(IPAddress.Parse("69.63.176.0")).Result;
     
 But you should do async, really.
 
