@@ -59,6 +59,12 @@ namespace ArinWhois.Model
 
         [DataMember(Name = "endAddress")]
         public ValueWrapper<string> EndAddress { get; set; }
+
+        [IgnoreDataMember]
+        public string Cidr
+        {
+            get { return string.Format("{0}/{1}", StartAddress, CidrLength); }
+        }
     }
     
 }

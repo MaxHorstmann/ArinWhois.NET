@@ -12,11 +12,11 @@ namespace ArinWhois.Client
 
         private static readonly Options DeserializationOptions = Options.ISO8601;
 
-        public async Task<Response> QueryNetworkAsync(string ip)
+        public async Task<Response> QueryAsync(IPAddress ip)
         {
             using (var wc = new WebClient())
             {
-                var query = string.Format("net/NET-{0}-1/pft", ip.Replace(".", "-"));
+                var query = string.Format("net/NET-{0}-1/pft", ip.ToString().Replace(".", "-"));
                 var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
                 var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
                 return deser.ResponseInner;

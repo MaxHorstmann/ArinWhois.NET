@@ -6,5 +6,10 @@ namespace ArinWhois.Model
     {
         [DataMember(Name = "$")]
         public T Value { get; set; }
+
+        public override string ToString()
+        {
+            return Value.ToString();
+        }
     }
 }
