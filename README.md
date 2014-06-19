@@ -11,7 +11,7 @@ This is a simple .NET client to access the RESTful API programmatically with a s
 Install
 ============
 
-<coming to Nuget soon>
+*coming to Nuget soon*
 
 
 
@@ -33,6 +33,16 @@ If you don't wanna do async, replace the second line with
     
 But you should do async, really.
 
+
+Limitations
+===========
+* Read-only
+
+
+
+Contributors
+============
+* [MaxHorstmann](https://github.com/MaxHorstmann) (Max Horstmann)
 
 
 
