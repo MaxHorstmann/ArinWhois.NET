@@ -6,7 +6,7 @@ namespace ArinWhois.Model
     public class Response
     {
         // enabling this throws - bug in Jil?
-        //[DataMember(Name = "ns4:pft")]
+        [DataMember(Name = "ns4:pft")]
         public Pft ns4pft { get; set; }
     }
 
