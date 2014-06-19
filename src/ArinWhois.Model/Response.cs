@@ -23,7 +23,8 @@ namespace ArinWhois.Model
         [DataMember(Name = "@termsOfUse")]
         public string TermsOfUse { get; set; }
 
-        //public DateTime registrationDate { get; set; }
+        [DataMember(Name = "registrationDate")]
+        public ValueWrapper<DateTime> RegistrationDate { get; set; }
     }
 
     public class Org
@@ -36,6 +37,10 @@ namespace ArinWhois.Model
 
     }
 
-
+    public class ValueWrapper<T>
+    {
+        [DataMember(Name = "$")]
+        public T Value { get; set; }
+    }
 
 }
