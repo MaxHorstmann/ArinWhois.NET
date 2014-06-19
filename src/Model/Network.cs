@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using ArinWhois.Model;
 
-namespace ArinWhois.ArinWhois.Model
+namespace ArinWhois.Model
 {
     public class Network
     {

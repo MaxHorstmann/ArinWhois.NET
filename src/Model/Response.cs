@@ -1,5 +1,4 @@
 ﻿using System.Runtime.Serialization;
-using ArinWhois.ArinWhois.Model;
 
 namespace ArinWhois.Model
 {

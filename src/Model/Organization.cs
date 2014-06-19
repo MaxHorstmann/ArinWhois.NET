@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ArinWhois.ArinWhois.Model
+namespace ArinWhois.Model
 {
     public class Organization
     {
