@@ -1,5 +1,5 @@
-ARIN-Whois.NET
-==============
+ARIN-Whois-RWS.NET
+==================
 
 .NET client for ARIN's [Whois RESTful Web Service](https://www.arin.net/resources/whoisrws/index.html), the API to accessing ARIN's Whois data.
 
@@ -11,7 +11,9 @@ This is a simple .NET client to access the RESTful API programmatically with a s
 Install
 ============
 
-*coming to Nuget soon*
+Use the [NuGet](https://www.nuget.org/packages/ArinWhois) package, run the following command in the Package Manager Console:
+
+    PM> Install-Package ArinWhois
 
 
 
