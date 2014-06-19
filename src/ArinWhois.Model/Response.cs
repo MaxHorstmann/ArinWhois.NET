@@ -47,7 +47,35 @@ namespace ArinWhois.Model
         [DataMember(Name = "version")]
         public ValueWrapper<string> Version { get; set; }
 
+        [DataMember(Name = "netBlocks")]
+        public NetBlocks NetBlocks { get; set; }
+
     }
+
+    public class NetBlocks
+    {
+        [DataMember(Name = "netBlock")]
+        public NetBlock NetBlock { get; set; }
+    }
+
+    public class NetBlock
+    {
+        [DataMember(Name = "cidrLength")]
+        public ValueWrapper<string> CidrLength { get; set; }
+
+        [DataMember(Name = "type")]
+        public ValueWrapper<string> Type { get; set; }
+
+        [DataMember(Name = "description")]
+        public ValueWrapper<string> Description { get; set; }
+
+        [DataMember(Name = "startAddress")]
+        public ValueWrapper<string> StartAddress { get; set; }
+
+        [DataMember(Name = "endAddress")]
+        public ValueWrapper<string> EndAddress { get; set; } 
+    }
+    
 
     public class Org
     {
