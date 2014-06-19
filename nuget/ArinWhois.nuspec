@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ArinWhois</id>
+    <version>0.1</version>
+    <title>ArinWhois.NET</title>
+    <authors>Max Horstmann</authors>
+    <owners>Max Horstmann</owners>
+    <projectUrl>https://github.com/MaxHorstmann/ArinWhois.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET client for ARIN's Whois RESTful Web Service, the API to accessing ARIN's Whois data.</description>
+    <releaseNotes>Pre-Relase version</releaseNotes>
+    <copyright>Copyright Max Horstmann, 2014</copyright>
+    <tags>ARIN</tags>
+  </metadata>
+</package>
