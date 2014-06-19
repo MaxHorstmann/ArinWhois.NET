@@ -16,7 +16,8 @@ namespace ArinWhois.Model
         [DataMember(Name = "org")]
         public Organization Organization { get; set; }
 
-        //public Poc poc { get; set; }
+        [DataMember(Name = "poc")]
+        public PointOfContact PointOfContact { get; set; }
     }
 
 }

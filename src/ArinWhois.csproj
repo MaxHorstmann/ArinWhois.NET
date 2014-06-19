@@ -57,6 +57,7 @@
     <Compile Include="Model\Common.cs" />
     <Compile Include="Model\Network.cs" />
     <Compile Include="Model\Organization.cs" />
+    <Compile Include="Model\PointOfContact.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Response.cs" />
   </ItemGroup>
