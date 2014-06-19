@@ -16,15 +16,14 @@ namespace ArinWhois.Client
             {
                 var query = string.Format("net/NET-{0}-1/pft", ip.Replace(".", "-"));
                 var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                //var result = JSON.DeserializeDynamic(response);
-                return  JSON.Deserialize<Response>(jsonString);
+                var deser = JSON.Deserialize<ResponseOuter>(jsonString);
+                return deser.ResponseInner;
             }
         }
 
         private static Uri GetRequestUrl(string query)
         {
-            var uri = string.Format("{0}/{1}.json", BaseUrl, query);
-            return new Uri(uri);
+            return new Uri(string.Format("{0}/{1}.json", BaseUrl, query));
         }
         
 

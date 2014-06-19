@@ -3,23 +3,26 @@ using System.Runtime.Serialization;
 
 namespace ArinWhois.Model
 {
-    public class Response
+    internal class ResponseOuter
     {
-        // enabling this throws - bug in Jil?
         [DataMember(Name = "ns4:pft")]
-        public Pft ns4pft { get; set; }
+        public Response ResponseInner { get; set; }
     }
 
-    public class Pft
+    public class Response
     {
-        public Net net { get; set; }
-        public Org org { get; set; }
-        public Poc poc { get; set; }
+        [DataMember(Name = "net")]
+        public Net Net { get; set; }
+
+        //public Org org { get; set; }
+        //public Poc poc { get; set; }
     }
 
     public class Net
     {
-        //public string termsOfUse { get; set; }
+        [DataMember(Name = "@termsOfUse")]
+        public string TermsOfUse { get; set; }
+
         //public DateTime registrationDate { get; set; }
     }
 
