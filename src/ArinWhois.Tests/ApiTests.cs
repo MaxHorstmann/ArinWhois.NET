@@ -22,6 +22,11 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock);
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.CidrLength.Value);
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.Description);
+
+            Assert.IsNotNull(response.Network.OrgRef.Name);
+            Assert.AreEqual(response.Network.OrgRef.Name, "Facebook, Inc.");
+
+
         }
 
         [TestMethod]

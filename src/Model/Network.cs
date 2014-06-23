@@ -35,6 +35,18 @@ namespace ArinWhois.Model
         [DataMember(Name = "netBlocks")]
         public NetBlocks NetBlocks { get; set; }
 
+        [DataMember(Name = "orgRef")]
+        public OrgRef OrgRef { get; set; }
+
+    }
+
+    public class OrgRef
+    {
+        [DataMember(Name = "@name")]
+        public string Name { get; set; }
+
+        [DataMember(Name = "@handle")]
+        public string Handle { get; set; }
     }
 
     public class NetBlocks

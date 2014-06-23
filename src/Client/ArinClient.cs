@@ -19,7 +19,8 @@ namespace ArinWhois.Client
                 try
                 {
                     var query = string.Format("ip/{0}", ip);
-                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                    var url = GetRequestUrl(query);
+                    var jsonString = await wc.DownloadStringTaskAsync(url);
                     var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
                     return deser;
                 }
