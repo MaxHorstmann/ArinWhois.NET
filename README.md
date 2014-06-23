@@ -21,17 +21,14 @@ Sample Usage
 ============
 
     var arinClient = new ArinClient();
-    var response = await arinClient.QueryAsync(IPAddress.Parse("69.63.176.0"));
+    var response = await arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0"));
 
     Console.WriteLine(response.Network.Name);
     Console.WriteLine(response.Network.NetBlocks.NetBlock.Cidr);
-    Console.WriteLine(response.Organization.Name);
-    Console.WriteLine(response.Organization.City);
 
 If you don't wanna do async, replace the second line with 
 
-
-    var response = arinClient.QueryAsync(IPAddress.Parse("69.63.176.0")).Result;
+    var response = arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0")).Result;
     
 But you should do async, really.
 
