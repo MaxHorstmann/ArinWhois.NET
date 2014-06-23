@@ -24,5 +24,14 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.CidrLength.Value);
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.Description);
         }
+
+        [TestMethod]
+        public void TestNotFound()
+        {
+            var arinClient = new ArinClient();
+            var response = arinClient.QueryAsync(IPAddress.Parse("189.167.158.151")).Result;
+            Assert.IsNull(response);
+        }
+
     }
 }

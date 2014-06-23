@@ -17,9 +17,16 @@ namespace ArinWhois.Client
             using (var wc = new WebClient())
             {
                 var query = string.Format("net/NET-{0}-1/pft", ip.ToString().Replace(".", "-"));
-                var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
-                return deser.ResponseInner;
+                try
+                {
+                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                    var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
+                    return deser.ResponseInner;
+                }
+                catch (WebException) // typically 404 not found
+                {
+                    return null;
+                }
             }
         }
 
