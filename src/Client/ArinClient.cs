@@ -16,10 +16,17 @@ namespace ArinWhois.Client
         {
             using (var wc = new WebClient())
             {
-                var query = string.Format("ip/{0}", ip);
-                var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
-                return deser;
+                try
+                {
+                    var query = string.Format("ip/{0}", ip);
+                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                    var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
+                    return deser;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 
@@ -27,10 +34,17 @@ namespace ArinWhois.Client
         {
             using (var wc = new WebClient())
             {
-                var query = string.Format("net/{0}/pft", handle);
-                var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
-                return deser.ResponseInner;
+                try
+                {
+                    var query = string.Format("net/{0}/pft", handle);
+                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                    var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
+                    return deser.ResponseInner;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
 

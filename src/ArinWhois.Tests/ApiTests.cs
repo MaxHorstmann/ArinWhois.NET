@@ -9,7 +9,7 @@ namespace ArinWhois.Tests
     public class ApiTests
     {
         [TestMethod]
-        public void TestIp()
+        public void TestIpFound()
         {
             var arinClient = new ArinClient();
             var response = arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0")).Result;
@@ -23,6 +23,15 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.CidrLength.Value);
             Assert.IsNotNull(response.Network.NetBlocks.NetBlock.Description);
         }
+
+        [TestMethod]
+        public void TestIpNotFound()
+        {
+            var arinClient = new ArinClient();
+            var response = arinClient.QueryIpAsync(IPAddress.Parse("108.33.73.20")).Result;
+            Assert.IsNull(response);
+        }
+
 
         [TestMethod]
         public void TestNetwork()

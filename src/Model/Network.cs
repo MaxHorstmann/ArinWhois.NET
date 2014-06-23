@@ -40,8 +40,8 @@ namespace ArinWhois.Model
     public class NetBlocks
     {
         [DataMember(Name = "netBlock")]
-        public NetBlock NetBlock { get; set; }
-    }
+        public NetBlock NetBlock { get; set; }  // damn it, API sometimes sends an array here
+   }
 
     public class NetBlock
     {
