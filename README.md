@@ -21,13 +21,6 @@ Sample Usage
 ============
 
     var arinClient = new ArinClient();
-    var response = await arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0"));
-
-    Console.WriteLine(response.Network.Name);
-    Console.WriteLine(response.Network.NetBlocks.NetBlock.Cidr);
-    Console.WriteLine(response.Network.NetBlocks.NetBlock.Cidr);
-
-    var arinClient = new ArinClient();
     
     // Check single IP
     var ipResponse = await arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0"));
