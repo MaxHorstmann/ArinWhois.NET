@@ -25,8 +25,23 @@ Sample Usage
 
     Console.WriteLine(response.Network.Name);
     Console.WriteLine(response.Network.NetBlocks.NetBlock.Cidr);
+    Console.WriteLine(response.Network.NetBlocks.NetBlock.Cidr);
 
-If you don't wanna do async, replace the second line with 
+    var arinClient = new ArinClient();
+    
+    // Check single IP
+    var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0")).Result;
+    
+    Console.WriteLine(ipResponse.Network.Name);
+    Console.WriteLine(ipResponse.Network.NetBlocks.NetBlock.Cidr);
+    
+    // Find out more about organization
+    var orgResponse = arinClient.QueryResourceAsync(ipResponse.Network.OrgRef.Handle, ArinClient.ResourceType.Organization).Result;
+    Console.WriteLine(orgResponse.Organization.Name);
+    Console.WriteLine(orgResponse.Organization.City);
+	
+
+If you don't wanna do async, use `.Result`: 
 
     var response = arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0")).Result;
     
