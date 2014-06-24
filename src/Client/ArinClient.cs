@@ -12,6 +12,14 @@ namespace ArinWhois.Client
 
         private static readonly Options DeserializationOptions = Options.ISO8601;
 
+        public enum ResourceType
+        {
+            Unknown = 0,
+            Network = 1,
+            Organization = 2,
+            PointOfContact = 3
+        }
+
         public async Task<Response> QueryIpAsync(IPAddress ip)
         {
             using (var wc = new WebClient())
@@ -31,13 +39,15 @@ namespace ArinWhois.Client
             }
         }
 
-        public async Task<Response> QueryNetworkAsync(string handle)
+        public async Task<Response> QueryResourceAsync(string handle, ResourceType resourceType)
         {
+            if (resourceType != ResourceType.Organization) throw new NotImplementedException(); // coming soon
+
             using (var wc = new WebClient())
             {
                 try
                 {
-                    var query = string.Format("net/{0}/pft", handle);
+                    var query = string.Format("org/{0}/pft", handle);
                     var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
                     var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
                     return deser.ResponseInner;
