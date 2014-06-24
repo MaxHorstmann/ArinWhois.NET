@@ -30,13 +30,14 @@ Sample Usage
     var arinClient = new ArinClient();
     
     // Check single IP
-    var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0")).Result;
+    var ipResponse = await arinClient.QueryIpAsync(IPAddress.Parse("69.63.176.0"));
     
     Console.WriteLine(ipResponse.Network.Name);
     Console.WriteLine(ipResponse.Network.NetBlocks.NetBlock.Cidr);
     
     // Find out more about organization
-    var orgResponse = arinClient.QueryResourceAsync(ipResponse.Network.OrgRef.Handle, ArinClient.ResourceType.Organization).Result;
+    var orgResponse = await arinClient.QueryResourceAsync(ipResponse.Network.OrgRef.Handle, 
+								ArinClient.ResourceType.Organization);
     Console.WriteLine(orgResponse.Organization.Name);
     Console.WriteLine(orgResponse.Organization.City);
 	
