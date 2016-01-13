@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Jil">
-      <HintPath>packages\Jil.1.5.0\lib\net45\Jil.dll</HintPath>
+    <Reference Include="Jil, Version=2.12.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Jil.dll</HintPath>
     </Reference>
-    <Reference Include="Sigil">
-      <HintPath>packages\Sigil.4.2.1\lib\net45\Sigil.dll</HintPath>
+    <Reference Include="Sigil, Version=4.5.1.0, Culture=neutral, PublicKeyToken=2d06c3494341c8ab, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Sigil.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,6 +57,7 @@
     <Compile Include="Model\Response.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
