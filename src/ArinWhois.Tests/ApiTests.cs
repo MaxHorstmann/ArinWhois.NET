@@ -53,15 +53,32 @@ namespace ArinWhois.Tests
         }
 
         [TestMethod]
-        public void TestIpNotFound()
+        public void TestIp3Found()
         {
             var arinClient = new ArinClient();
-            var response = arinClient.QueryIpAsync(IPAddress.Parse("108.33.73.20")).Result;
-            Assert.IsNull(response);
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("96.21.63.199")).Result;
+
+            Assert.IsNotNull(ipResponse);
+            Assert.IsNotNull(ipResponse.Network);
+
+            Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
+            Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
+
+            Assert.IsNull(ipResponse.Network.OrgRef);
         }
 
-
-
-
+        // 
+        // This is not needed because ARIN will always return something
+        //
+        //[TestMethod]
+        //public void TestIpNotFound()
+        //{
+        //    var arinClient = new ArinClient();
+        //    var response = arinClient.QueryIpAsync(IPAddress.Parse("108.33.73.20")).Result;
+        //    Assert.IsNull(response);
+        //}
     }
 }
