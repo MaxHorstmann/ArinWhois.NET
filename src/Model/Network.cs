@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace ArinWhois.Model
 {
@@ -32,8 +33,8 @@ namespace ArinWhois.Model
         [DataMember(Name = "version")]
         public ValueWrapper<string> Version { get; set; }
 
-        [DataMember(Name = "netBlocks")]
-        public NetBlocks NetBlocks { get; set; }
+        //[DataMember(Name = "netBlocks")]
+        public List<NetBlock> NetBlocks = new List<NetBlock>();
 
         [DataMember(Name = "orgRef")]
         public OrgRef OrgRef { get; set; }
@@ -49,11 +50,14 @@ namespace ArinWhois.Model
         public string Handle { get; set; }
     }
 
-    public class NetBlocks
-    {
-        [DataMember(Name = "netBlock")]
-        public NetBlock NetBlock { get; set; }  // damn it, API sometimes sends an array here
-   }
+    //
+    // This is no longer needed, but kept in case you want it for the future.
+    //
+    //public class NetBlocks
+    //{
+    //    [DataMember(Name = "netBlock")]
+    //    public List<NetBlock> NetBlock { get; set; }  // damn it, API sometimes sends an array here, or single item
+    //}
 
     public class NetBlock
     {

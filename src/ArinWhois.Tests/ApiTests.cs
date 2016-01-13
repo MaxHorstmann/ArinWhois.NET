@@ -19,45 +19,37 @@ namespace ArinWhois.Tests
 
             Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
             Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock.CidrLength.Value);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock.Description);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
             Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Facebook, Inc.");
 
             var organizationHandle = ipResponse.Network.OrgRef.Handle;
-            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle, ArinClient.ResourceType.Organization).Result;
+            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
 
             Assert.IsNotNull(organizationResponse);
             Assert.AreEqual(organizationResponse.Organization.City.Value, "Menlo Park");
-
         }
 
         [TestMethod]
         public void TestIp2Found()
         {
             var arinClient = new ArinClient();
-            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("96.21.63.199")).Result;
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("98.155.64.40")).Result;
 
             Assert.IsNotNull(ipResponse);
             Assert.IsNotNull(ipResponse.Network);
 
             Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
             Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock.CidrLength.Value);
-            Assert.IsNotNull(ipResponse.Network.NetBlocks.NetBlock.Description);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
-            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Facebook, Inc.");
-
-            var organizationHandle = ipResponse.Network.OrgRef.Handle;
-            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle, ArinClient.ResourceType.Organization).Result;
-
-            Assert.IsNotNull(organizationResponse);
-            Assert.AreEqual(organizationResponse.Organization.City.Value, "Menlo Park");
-
+            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Time Warner Cable Internet LLC");
         }
 
         [TestMethod]

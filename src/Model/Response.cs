@@ -19,5 +19,4 @@ namespace ArinWhois.Model
         [DataMember(Name = "poc")]
         public PointOfContact PointOfContact { get; set; }
     }
-
 }

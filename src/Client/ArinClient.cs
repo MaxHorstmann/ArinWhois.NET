@@ -3,6 +3,8 @@ using System.Net;
 using System.Threading.Tasks;
 using ArinWhois.Model;
 using Jil;
+using System.Collections.Generic;
+
 
 namespace ArinWhois.Client
 {
@@ -10,7 +12,7 @@ namespace ArinWhois.Client
     {
         private const string BaseUrl = "http://whois.arin.net/rest";
 
-        private static readonly Options DeserializationOptions = Options.ISO8601;
+        private static readonly Options DeserializationOptions = Options.ISO8601ExcludeNulls;
 
         public enum ResourceType
         {
@@ -29,7 +31,26 @@ namespace ArinWhois.Client
                     var query = string.Format("ip/{0}", ip);
                     var url = GetRequestUrl(query);
                     var jsonString = await wc.DownloadStringTaskAsync(url);
+
                     var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
+                    var deserdyn = JSON.DeserializeDynamic(jsonString, DeserializationOptions);
+                    var netblock_ser = deserdyn["net"]["netBlocks"]["netBlock"];
+
+                    try
+                    {
+                        // Take care of non-array
+                        NetBlock netblock = JSON.Deserialize<NetBlock>(JSON.SerializeDynamic(netblock_ser), DeserializationOptions);
+                        deser.Network.NetBlocks.Add(netblock);
+                        return deser;
+                    }
+                    catch
+                    {
+                    }
+
+                    // Take care of array
+                    List<NetBlock> netblocks = JSON.Deserialize<List<NetBlock>>(JSON.SerializeDynamic(netblock_ser), DeserializationOptions);
+                    deser.Network.NetBlocks = netblocks;
+
                     return deser;
                 }
                 catch
@@ -64,8 +85,6 @@ namespace ArinWhois.Client
         {
             return new Uri(string.Format("{0}/{1}.json", BaseUrl, query));
         }
-        
-
 
     }
 
