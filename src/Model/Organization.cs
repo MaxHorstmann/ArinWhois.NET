@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace ArinWhois.Model
 {
@@ -39,7 +40,7 @@ namespace ArinWhois.Model
 
     public class StreetAddress
     {
-        [DataMember(Name = "line")]
-        public ValueWrapper<string> Line { get; set; }
+        //[DataMember(Name = "line")]
+        public List<ValueWrapper<string>> Line = new List<ValueWrapper<string>>();
     }
 }

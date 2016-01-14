@@ -68,12 +68,27 @@ namespace ArinWhois.Client
             {
                 try
                 {
-                    //var query = string.Format("org/{0}/pft", handle);
                     var query = string.Format("org/{0}", handle);
                     var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                    //var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
                     var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
-                    //return deser.ResponseInner;
+
+                    var deserdyn = JSON.DeserializeDynamic(jsonString, DeserializationOptions);
+                    var streetaddress_ser = deserdyn["org"]["streetAddress"]["line"];
+
+                    try
+                    {
+                        ValueWrapper<string> streetaddress = JSON.Deserialize<ValueWrapper<string>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                        deser.Organization.StreetAddress.Line.Add(streetaddress);
+                        return deser;
+                    }
+                    catch
+                    {
+
+                    }
+
+                    List<ValueWrapper<string>> streetaddresses = JSON.Deserialize<List<ValueWrapper<string>>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                    deser.Organization.StreetAddress.Line = streetaddresses;
+
                     return deser;
                 }
                 catch

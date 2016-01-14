@@ -100,6 +100,37 @@ namespace ArinWhois.Tests
             Assert.IsNull(ipResponse.Network.OrgRef);
         }
 
+        [TestMethod]
+        public void TestIp5Found()
+        {
+            var arinClient = new ArinClient();
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("108.234.177.20")).Result;
+
+            Assert.IsNotNull(ipResponse);
+            Assert.IsNotNull(ipResponse.Network);
+
+            Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
+            Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
+
+            Assert.IsNotNull(ipResponse.Network.OrgRef);
+
+            Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
+            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "AT&T Internet Services");
+
+            var organizationHandle = ipResponse.Network.OrgRef.Handle;
+            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
+
+            Assert.IsNotNull(organizationResponse);
+            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
+            Assert.AreEqual(organizationResponse.Organization.City.Value, "Richardson");
+            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "TX");
+            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "75082");
+
+        }
+
 
         // 
         // This is not needed because ARIN will always return something
