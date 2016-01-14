@@ -2,12 +2,6 @@
 
 namespace ArinWhois.Model
 {
-    internal class ResponseOuter
-    {
-        [DataMember(Name = "ns4:pft")]
-        public Response ResponseInner { get; set; }
-    }
-
     public class Response
     {
         [DataMember(Name = "net")]
