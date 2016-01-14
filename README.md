@@ -66,5 +66,8 @@ Contributors
 * [MaxHorstmann](https://github.com/MaxHorstmann) (Max Horstmann)
 * [KeithJJones] (https://github.com/keithjjones) (Keith J. Jones)
 
+More Reading
+============
+* [ARIN's Documentation on the RESTful Interface] (https://www.arin.net/resources/whoisrws/whois_api.html)
 
 
