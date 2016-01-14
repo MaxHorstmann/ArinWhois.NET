@@ -22,5 +22,24 @@ namespace ArinWhois.Model
 
         [DataMember(Name = "updateDate")]
         public ValueWrapper<DateTime> UpdateDate { get; set; }
+
+        [DataMember(Name = "ref")]
+        public ValueWrapper<string> Ref { get; set; }
+
+        [DataMember(Name = "iso3166-1")]
+        public iso3166_1 iso3166_1 { get; set; }
+
+        [DataMember(Name = "iso3166-2")]
+        public ValueWrapper<string> iso3166_2 { get; set; }
+
+        [DataMember(Name = "streetAddress")]
+        public StreetAddress StreetAddress { get; set; }
+
+    }
+
+    public class StreetAddress
+    {
+        [DataMember(Name = "line")]
+        public ValueWrapper<string> Line { get; set; }
     }
 }

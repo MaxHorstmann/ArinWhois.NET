@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Client\ArinClient.cs" />
     <Compile Include="Model\Common.cs" />
+    <Compile Include="Model\iso3166-1.cs" />
     <Compile Include="Model\Network.cs" />
     <Compile Include="Model\Organization.cs" />
     <Compile Include="Model\PointOfContact.cs" />

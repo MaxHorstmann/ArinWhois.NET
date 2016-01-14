@@ -30,7 +30,10 @@ namespace ArinWhois.Tests
             var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
 
             Assert.IsNotNull(organizationResponse);
+            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
             Assert.AreEqual(organizationResponse.Organization.City.Value, "Menlo Park");
+            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "CA");
+            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "94025");
         }
 
         [TestMethod]
@@ -50,6 +53,15 @@ namespace ArinWhois.Tests
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
             Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Time Warner Cable Internet LLC");
+
+            var organizationHandle = ipResponse.Network.OrgRef.Handle;
+            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
+
+            Assert.IsNotNull(organizationResponse);
+            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
+            Assert.AreEqual(organizationResponse.Organization.City.Value, "Herndon");
+            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "VA");
+            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "20171");
         }
 
         [TestMethod]
@@ -69,6 +81,25 @@ namespace ArinWhois.Tests
 
             Assert.IsNull(ipResponse.Network.OrgRef);
         }
+
+        [TestMethod]
+        public void TestIp4Found()
+        {
+            var arinClient = new ArinClient();
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("98.176.133.1")).Result;
+
+            Assert.IsNotNull(ipResponse);
+            Assert.IsNotNull(ipResponse.Network);
+
+            Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
+            Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
+
+            Assert.IsNull(ipResponse.Network.OrgRef);
+        }
+
 
         // 
         // This is not needed because ARIN will always return something

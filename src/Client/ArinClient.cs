@@ -68,10 +68,13 @@ namespace ArinWhois.Client
             {
                 try
                 {
-                    var query = string.Format("org/{0}/pft", handle);
+                    //var query = string.Format("org/{0}/pft", handle);
+                    var query = string.Format("org/{0}", handle);
                     var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                    var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
-                    return deser.ResponseInner;
+                    //var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
+                    var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
+                    //return deser.ResponseInner;
+                    return deser;
                 }
                 catch
                 {
