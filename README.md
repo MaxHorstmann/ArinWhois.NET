@@ -64,6 +64,7 @@ Limitations
 Contributors
 ============
 * [MaxHorstmann](https://github.com/MaxHorstmann) (Max Horstmann)
+* [KeithJJones] (https://github.com/keithjjones) (Keith Jones)
 
 
 
