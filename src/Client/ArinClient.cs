@@ -19,7 +19,8 @@ namespace ArinWhois.Client
             Unknown = 0,
             Network = 1,
             Organization = 2,
-            PointOfContact = 3
+            PointOfContact = 3,
+            Customer = 4
         }
 
         public async Task<Response> QueryIpAsync(IPAddress ip)
@@ -62,40 +63,76 @@ namespace ArinWhois.Client
 
         public async Task<Response> QueryResourceAsync(string handle, ResourceType resourceType)
         {
-            if (resourceType != ResourceType.Organization) throw new NotImplementedException(); // coming soon
+            if (resourceType != ResourceType.Organization && resourceType != ResourceType.Customer) throw new NotImplementedException(); // coming soon
 
             using (var wc = new WebClient())
             {
-                try
+                switch (resourceType)
                 {
-                    var query = string.Format("org/{0}", handle);
-                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                    var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
+                    case ResourceType.Organization:
+                        try
+                        {
+                            var query = string.Format("org/{0}", handle);
+                            var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                            var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
 
-                    var deserdyn = JSON.DeserializeDynamic(jsonString, DeserializationOptions);
-                    var streetaddress_ser = deserdyn["org"]["streetAddress"]["line"];
+                            var deserdyn = JSON.DeserializeDynamic(jsonString, DeserializationOptions);
+                            var streetaddress_ser = deserdyn["org"]["streetAddress"]["line"];
 
-                    try
-                    {
-                        ValueWrapper<string> streetaddress = JSON.Deserialize<ValueWrapper<string>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
-                        deser.Organization.StreetAddress.Line.Add(streetaddress);
-                        return deser;
-                    }
-                    catch
-                    {
+                            try
+                            {
+                                ValueWrapper<string> streetaddress = JSON.Deserialize<ValueWrapper<string>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                                deser.Organization.StreetAddress.Line.Add(streetaddress);
+                                return deser;
+                            }
+                            catch
+                            {
 
-                    }
+                            }
 
-                    List<ValueWrapper<string>> streetaddresses = JSON.Deserialize<List<ValueWrapper<string>>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
-                    deser.Organization.StreetAddress.Line = streetaddresses;
+                            List<ValueWrapper<string>> streetaddresses = JSON.Deserialize<List<ValueWrapper<string>>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                            deser.Organization.StreetAddress.Line = streetaddresses;
 
-                    return deser;
-                }
-                catch
-                {
-                    return null;
+                            return deser;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+
+                    case ResourceType.Customer:
+                        try
+                        {
+                            var query = string.Format("customer/{0}", handle);
+                            var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
+                            var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
+
+                            var deserdyn = JSON.DeserializeDynamic(jsonString, DeserializationOptions);
+                            var streetaddress_ser = deserdyn["customer"]["streetAddress"]["line"];
+
+                            try
+                            {
+                                ValueWrapper<string> streetaddress = JSON.Deserialize<ValueWrapper<string>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                                deser.Customer.StreetAddress.Line.Add(streetaddress);
+                                return deser;
+                            }
+                            catch
+                            {
+
+                            }
+
+                            List<ValueWrapper<string>> streetaddresses = JSON.Deserialize<List<ValueWrapper<string>>>(JSON.SerializeDynamic(streetaddress_ser), DeserializationOptions);
+                            deser.Customer.StreetAddress.Line = streetaddresses;
+
+                            return deser;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
                 }
             }
+            return null;
         }
 
 

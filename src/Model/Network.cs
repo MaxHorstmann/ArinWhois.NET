@@ -39,9 +39,21 @@ namespace ArinWhois.Model
         [DataMember(Name = "orgRef")]
         public OrgRef OrgRef { get; set; }
 
+        [DataMember(Name = "customerRef")]
+        public OrgRef CustomerRef { get; set; }
+
     }
 
     public class OrgRef
+    {
+        [DataMember(Name = "@name")]
+        public string Name { get; set; }
+
+        [DataMember(Name = "@handle")]
+        public string Handle { get; set; }
+    }
+
+    public class CustomerRef
     {
         [DataMember(Name = "@name")]
         public string Name { get; set; }

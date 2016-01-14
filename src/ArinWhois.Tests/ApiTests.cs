@@ -128,7 +128,38 @@ namespace ArinWhois.Tests
             Assert.AreEqual(organizationResponse.Organization.City.Value, "Richardson");
             Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "TX");
             Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "75082");
+        }
 
+        [TestMethod]
+        public void TestIp6Found()
+        {
+            var arinClient = new ArinClient();
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("174.65.101.118")).Result;
+
+            Assert.IsNotNull(ipResponse);
+            Assert.IsNotNull(ipResponse.Network);
+
+            Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
+            Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
+
+            Assert.IsNull(ipResponse.Network.OrgRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef.Name);
+            Assert.AreEqual(ipResponse.Network.CustomerRef.Name, "Cox Communications");
+
+            var customerHandle = ipResponse.Network.CustomerRef.Handle;
+            var customerResponse = arinClient.QueryResourceAsync(customerHandle.ToString(), ArinClient.ResourceType.Customer).Result;
+
+            Assert.IsNotNull(customerResponse);
+            Assert.AreEqual(customerResponse.Customer.iso3166_1.Name.Value, "UNITED STATES");
+            Assert.AreEqual(customerResponse.Customer.City.Value, "Atlanta");
+            Assert.AreEqual(customerResponse.Customer.iso3166_2.Value, "GA");
+            Assert.AreEqual(customerResponse.Customer.PostalCode.Value, "30319");
         }
 
 
