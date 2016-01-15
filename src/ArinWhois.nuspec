@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>ArinWhois-VS2015</id>
-    <version>20160114.6</version>
-    <title>ArinWhois.NET</title>
+    <version>20160115.1</version>
+    <title>ArinWhois.NET-VS2015</title>
     <authors>Max Horstmann, Keith J. Jones</authors>
     <owners>Max Horstmann, Keith J. Jones</owners>
     <projectUrl>https://github.com/keithjjones/ArinWhois.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET client for ARIN's Whois RESTful Web Service, the API to accessing ARIN's Whois data.  Fork of the ArinWhois.NET project for VS 2015.</description>
-    <releaseNotes>Stable Version</releaseNotes>
+    <releaseNotes>Changed the name to be slightly different than the original.</releaseNotes>
     <copyright>Copyright Max Horstmann, 2014; Copyright Keith Jones, 2016</copyright>
     <tags>ARIN, Whois</tags>
   </metadata>
