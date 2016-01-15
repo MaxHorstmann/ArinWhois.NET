@@ -11,9 +11,9 @@ This is a simple .NET client to access the RESTful API programmatically with a s
 Install
 ============
 
-Use the [NuGet](https://www.nuget.org/packages/ArinWhois) package, run the following command in the Package Manager Console:
+Use the [NuGet](https://www.nuget.org/packages/ArinWhois-VS2015) package, run the following command in the Package Manager Console:
 
-    PM> Install-Package ArinWhois
+    PM> Install-Package ArinWhois-VS2015
 
 
 
