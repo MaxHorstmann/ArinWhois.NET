@@ -80,6 +80,20 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNull(ipResponse.Network.OrgRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef.Name);
+            Assert.AreEqual("Videotron Ltee", ipResponse.Network.CustomerRef.Name);
+
+            var customerHandle = ipResponse.Network.CustomerRef.Handle;
+            var customerResponse = arinClient.QueryResourceAsync(customerHandle.ToString(), ArinClient.ResourceType.Customer).Result;
+
+            Assert.IsNotNull(customerResponse);
+            Assert.AreEqual("CANADA", customerResponse.Customer.iso3166_1.Name.Value);
+            Assert.AreEqual("Montreal", customerResponse.Customer.City.Value);
+            Assert.AreEqual("QC", customerResponse.Customer.iso3166_2.Value);
+            Assert.AreEqual("H2X 3W4", customerResponse.Customer.PostalCode.Value);
         }
 
         [TestMethod]
@@ -98,6 +112,20 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNull(ipResponse.Network.OrgRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef);
+
+            Assert.IsNotNull(ipResponse.Network.CustomerRef.Name);
+            Assert.AreEqual("Cox Communications", ipResponse.Network.CustomerRef.Name);
+
+            var customerHandle = ipResponse.Network.CustomerRef.Handle;
+            var customerResponse = arinClient.QueryResourceAsync(customerHandle.ToString(), ArinClient.ResourceType.Customer).Result;
+
+            Assert.IsNotNull(customerResponse);
+            Assert.AreEqual("UNITED STATES", customerResponse.Customer.iso3166_1.Name.Value);
+            Assert.AreEqual("Atlanta", customerResponse.Customer.City.Value);
+            Assert.AreEqual("GA", customerResponse.Customer.iso3166_2.Value);
+            Assert.AreEqual("30319", customerResponse.Customer.PostalCode.Value);
         }
 
         [TestMethod]
