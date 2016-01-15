@@ -24,16 +24,16 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
-            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Facebook, Inc.");
+            Assert.AreEqual("Facebook, Inc.", ipResponse.Network.OrgRef.Name);
 
             var organizationHandle = ipResponse.Network.OrgRef.Handle;
             var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
 
             Assert.IsNotNull(organizationResponse);
-            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
-            Assert.AreEqual(organizationResponse.Organization.City.Value, "Menlo Park");
-            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "CA");
-            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "94025");
+            Assert.AreEqual("UNITED STATES", organizationResponse.Organization.iso3166_1.Name.Value);
+            Assert.AreEqual("Menlo Park", organizationResponse.Organization.City.Value);
+            Assert.AreEqual("CA", organizationResponse.Organization.iso3166_2.Value);
+            Assert.AreEqual("94025", organizationResponse.Organization.PostalCode.Value);
         }
 
         [TestMethod]
@@ -52,16 +52,16 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
-            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "Time Warner Cable Internet LLC");
+            Assert.AreEqual("Time Warner Cable Internet LLC", ipResponse.Network.OrgRef.Name);
 
             var organizationHandle = ipResponse.Network.OrgRef.Handle;
             var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
 
             Assert.IsNotNull(organizationResponse);
-            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
-            Assert.AreEqual(organizationResponse.Organization.City.Value, "Herndon");
-            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "VA");
-            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "20171");
+            Assert.AreEqual("UNITED STATES", organizationResponse.Organization.iso3166_1.Name.Value);
+            Assert.AreEqual("Herndon", organizationResponse.Organization.City.Value);
+            Assert.AreEqual("VA", organizationResponse.Organization.iso3166_2.Value);
+            Assert.AreEqual("20171", organizationResponse.Organization.PostalCode.Value);
         }
 
         [TestMethod]
@@ -118,16 +118,16 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.OrgRef);
 
             Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
-            Assert.AreEqual(ipResponse.Network.OrgRef.Name, "AT&T Internet Services");
+            Assert.AreEqual("AT&T Internet Services", ipResponse.Network.OrgRef.Name);
 
             var organizationHandle = ipResponse.Network.OrgRef.Handle;
             var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
 
             Assert.IsNotNull(organizationResponse);
-            Assert.AreEqual(organizationResponse.Organization.iso3166_1.Name.Value, "UNITED STATES");
-            Assert.AreEqual(organizationResponse.Organization.City.Value, "Richardson");
-            Assert.AreEqual(organizationResponse.Organization.iso3166_2.Value, "TX");
-            Assert.AreEqual(organizationResponse.Organization.PostalCode.Value, "75082");
+            Assert.AreEqual("UNITED STATES", organizationResponse.Organization.iso3166_1.Name.Value);
+            Assert.AreEqual("Richardson", organizationResponse.Organization.City.Value);
+            Assert.AreEqual("TX", organizationResponse.Organization.iso3166_2.Value);
+            Assert.AreEqual("75082", organizationResponse.Organization.PostalCode.Value);
         }
 
         [TestMethod]
@@ -150,16 +150,16 @@ namespace ArinWhois.Tests
             Assert.IsNotNull(ipResponse.Network.CustomerRef);
 
             Assert.IsNotNull(ipResponse.Network.CustomerRef.Name);
-            Assert.AreEqual(ipResponse.Network.CustomerRef.Name, "Cox Communications");
+            Assert.AreEqual("Cox Communications", ipResponse.Network.CustomerRef.Name);
 
             var customerHandle = ipResponse.Network.CustomerRef.Handle;
             var customerResponse = arinClient.QueryResourceAsync(customerHandle.ToString(), ArinClient.ResourceType.Customer).Result;
 
             Assert.IsNotNull(customerResponse);
-            Assert.AreEqual(customerResponse.Customer.iso3166_1.Name.Value, "UNITED STATES");
-            Assert.AreEqual(customerResponse.Customer.City.Value, "Atlanta");
-            Assert.AreEqual(customerResponse.Customer.iso3166_2.Value, "GA");
-            Assert.AreEqual(customerResponse.Customer.PostalCode.Value, "30319");
+            Assert.AreEqual("UNITED STATES", customerResponse.Customer.iso3166_1.Name.Value);
+            Assert.AreEqual("Atlanta", customerResponse.Customer.City.Value);
+            Assert.AreEqual("GA", customerResponse.Customer.iso3166_2.Value);
+            Assert.AreEqual("30319", customerResponse.Customer.PostalCode.Value);
         }
 
 
