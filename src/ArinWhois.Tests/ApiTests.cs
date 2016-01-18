@@ -190,16 +190,36 @@ namespace ArinWhois.Tests
             Assert.AreEqual("30319", customerResponse.Customer.PostalCode.Value);
         }
 
+        [TestMethod]
+        public void TestIp7Found()
+        {
+            var arinClient = new ArinClient();
+            var ipResponse = arinClient.QueryIpAsync(IPAddress.Parse("174.34.144.69")).Result;
 
-        // 
-        // This is not needed because ARIN will always return something
-        //
-        //[TestMethod]
-        //public void TestIpNotFound()
-        //{
-        //    var arinClient = new ArinClient();
-        //    var response = arinClient.QueryIpAsync(IPAddress.Parse("108.33.73.20")).Result;
-        //    Assert.IsNull(response);
-        //}
+            Assert.IsNotNull(ipResponse);
+            Assert.IsNotNull(ipResponse.Network);
+
+            Assert.IsTrue(ipResponse.Network.TermsOfUse.StartsWith("http"));
+            Assert.IsNotNull(ipResponse.Network.RegistrationDate.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0]);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].CidrLength.Value);
+            Assert.IsNotNull(ipResponse.Network.NetBlocks[0].Description);
+
+            Assert.IsNotNull(ipResponse.Network.OrgRef);
+
+            Assert.IsNotNull(ipResponse.Network.OrgRef.Name);
+            Assert.AreEqual("Ubiquity Server Solutions Seattle", ipResponse.Network.OrgRef.Name);
+
+            var organizationHandle = ipResponse.Network.OrgRef.Handle;
+            var organizationResponse = arinClient.QueryResourceAsync(organizationHandle.ToString(), ArinClient.ResourceType.Organization).Result;
+
+            Assert.IsNotNull(organizationResponse);
+            Assert.AreEqual("12101 Tukwila International Blvd", organizationResponse.Organization.StreetAddress.Line[0].Value.Trim());
+            Assert.AreEqual("Suite 100", organizationResponse.Organization.StreetAddress.Line[1].Value.Trim());
+            Assert.AreEqual("UNITED STATES", organizationResponse.Organization.iso3166_1.Name.Value);
+            Assert.AreEqual("Tukwila", organizationResponse.Organization.City.Value);
+            Assert.AreEqual("WA", organizationResponse.Organization.iso3166_2.Value);
+            Assert.AreEqual("98168", organizationResponse.Organization.PostalCode.Value);
+        }
     }
 }
