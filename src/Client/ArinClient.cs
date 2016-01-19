@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace ArinWhois.Client
 {
+    /// <summary>
+    /// A class for ARIN operations
+    /// </summary>
     public class ArinClient
     {
         /// <summary>

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ArinWhois.Model
 {
     /// <summary>
-    /// A point of contact content of an ARIN Whois query.  Currently not used.
+    /// A point of contact content of an ARIN Whois query.  Currently not implemented.
     /// </summary>
     public class PointOfContact
     {
