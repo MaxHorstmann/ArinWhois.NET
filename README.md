@@ -58,6 +58,7 @@ But you should do async, really.
 Limitations
 ===========
 * Read-only
+* Make sure nuget.exe is in your path for building release.
 
 
 
