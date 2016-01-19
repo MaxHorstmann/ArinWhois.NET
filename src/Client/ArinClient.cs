@@ -10,10 +10,19 @@ namespace ArinWhois.Client
 {
     public class ArinClient
     {
+        /// <summary>
+        /// The base URL for ARIN whois.
+        /// </summary>
         private const string BaseUrl = "http://whois.arin.net/rest";
 
+        /// <summary>
+        /// Options for the JSON deserialization process.
+        /// </summary>
         private static readonly Options DeserializationOptions = Options.ISO8601ExcludeNulls;
 
+        /// <summary>
+        /// The types of resources that can be queried through ARIN.
+        /// </summary>
         public enum ResourceType
         {
             Unknown = 0,
@@ -23,6 +32,11 @@ namespace ArinWhois.Client
             Customer = 4
         }
 
+        /// <summary>
+        /// Query an IP address, async
+        /// </summary>
+        /// <param name="ip">The IP address to query.</param>
+        /// <returns>Returns an async task with the response.</returns>
         public async Task<Response> QueryIpAsync(IPAddress ip)
         {
             using (var wc = new WebClient())
@@ -61,6 +75,12 @@ namespace ArinWhois.Client
             }
         }
 
+        /// <summary>
+        /// Queries a resource record on a handle.
+        /// </summary>
+        /// <param name="handle">The handle to query.</param>
+        /// <param name="resourceType">The type of resource record to query.</param>
+        /// <returns>Returns an async task of the response.</returns>
         public async Task<Response> QueryResourceAsync(string handle, ResourceType resourceType)
         {
             if (resourceType != ResourceType.Organization && resourceType != ResourceType.Customer) throw new NotImplementedException(); // coming soon
@@ -135,7 +155,11 @@ namespace ArinWhois.Client
             return null;
         }
 
-
+        /// <summary>
+        /// Builds the string for the ARIN request.
+        /// </summary>
+        /// <param name="query">The query to perform.</param>
+        /// <returns>The formatted URL.</returns>
         private static Uri GetRequestUrl(string query)
         {
             return new Uri(string.Format("{0}/{1}.json", BaseUrl, query));

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The organization content of an ARIN Whois query.
+    /// </summary>
     public class Organization
     {
         [DataMember(Name = "@termsOfUse")]

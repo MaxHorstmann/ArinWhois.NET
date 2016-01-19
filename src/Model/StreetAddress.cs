@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The street address used by an ARIN response.
+    /// </summary>
     public class StreetAddress
     {
         //[DataMember(Name = "line")]

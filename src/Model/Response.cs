@@ -2,6 +2,9 @@
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// A response from the ARIN Whois server.
+    /// </summary>
     public class Response
     {
         [DataMember(Name = "net")]

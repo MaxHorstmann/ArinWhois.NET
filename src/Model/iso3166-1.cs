@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The international location information used by an ARIN response.
+    /// </summary>
     public class iso3166_1
     {
         [DataMember(Name = "name")]

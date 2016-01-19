@@ -7,6 +7,9 @@ using System.Runtime.Serialization;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The customer content of an ARIN Whois response.
+    /// </summary>
     public class Customer
     {
         [DataMember(Name = "@termsOfUse")]

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The network content of a ARIN whois query.
+    /// </summary>
     public class Network
     {
         [DataMember(Name = "@termsOfUse")]
@@ -44,6 +47,9 @@ namespace ArinWhois.Model
 
     }
 
+    /// <summary>
+    /// The organization reference of an ARIN Whois query.
+    /// </summary>
     public class OrgRef
     {
         [DataMember(Name = "@name")]
@@ -53,6 +59,9 @@ namespace ArinWhois.Model
         public string Handle { get; set; }
     }
 
+    /// <summary>
+    /// The customer reference of an ARIN Whois query.
+    /// </summary>
     public class CustomerRef
     {
         [DataMember(Name = "@name")]
@@ -62,15 +71,9 @@ namespace ArinWhois.Model
         public string Handle { get; set; }
     }
 
-    //
-    // This is no longer needed, but kept in case you want it for the future.
-    //
-    //public class NetBlocks
-    //{
-    //    [DataMember(Name = "netBlock")]
-    //    public List<NetBlock> NetBlock { get; set; }  // damn it, API sometimes sends an array here, or single item
-    //}
-
+    /// <summary>
+    /// The netblock content of an ARIN Whois query.
+    /// </summary>
     public class NetBlock
     {
         [DataMember(Name = "cidrLength")]
