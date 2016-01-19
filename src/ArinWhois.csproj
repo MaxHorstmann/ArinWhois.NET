@@ -70,7 +70,7 @@
 goto END
 :PACK
 pushd "$(ProjectDir)"
-nuget.exe pack "$(ProjectFileName)" -Prop Configuration=Release;Platform=AnyCPU -o $(OutDir)
+nuget.exe pack "$(ProjectFileName)" -Prop Configuration=Release;Platform=AnyCPU -o $(SolutionDir)..\nuget\
 :END</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
