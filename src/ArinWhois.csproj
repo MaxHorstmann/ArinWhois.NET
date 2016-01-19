@@ -70,6 +70,7 @@
 goto END
 :PACK
 pushd "$(ProjectDir)"
+md "$(SolutionDir)..\nuget"
 nuget.exe pack "$(ProjectFileName)" -Prop Configuration=Release;Platform=AnyCPU -o "$(SolutionDir)..\nuget"
 :END</PostBuildEvent>
   </PropertyGroup>
