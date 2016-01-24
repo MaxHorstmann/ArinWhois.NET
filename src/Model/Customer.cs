@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Runtime.Serialization;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
 namespace ArinWhois.Model
 {
     /// <summary>
-    /// The organization content of an ARIN Whois query.
+    /// The customer content of an ARIN Whois response.
     /// </summary>
-    public class Organization
+    public class Customer
     {
         [DataMember(Name = "@termsOfUse")]
         public string TermsOfUse { get; set; }
@@ -38,6 +41,5 @@ namespace ArinWhois.Model
 
         [DataMember(Name = "streetAddress")]
         public StreetAddress StreetAddress { get; set; }
-
     }
 }

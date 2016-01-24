@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Runtime.Serialization;
+using System.Collections.Generic;
 
 namespace ArinWhois.Model
 {
+    /// <summary>
+    /// The network content of a ARIN whois query.
+    /// </summary>
     public class Network
     {
         [DataMember(Name = "@termsOfUse")]
@@ -32,14 +36,20 @@ namespace ArinWhois.Model
         [DataMember(Name = "version")]
         public ValueWrapper<string> Version { get; set; }
 
-        [DataMember(Name = "netBlocks")]
-        public NetBlocks NetBlocks { get; set; }
+        //[DataMember(Name = "netBlocks")]
+        public List<NetBlock> NetBlocks = new List<NetBlock>();
 
         [DataMember(Name = "orgRef")]
         public OrgRef OrgRef { get; set; }
 
+        [DataMember(Name = "customerRef")]
+        public OrgRef CustomerRef { get; set; }
+
     }
 
+    /// <summary>
+    /// The organization reference of an ARIN Whois query.
+    /// </summary>
     public class OrgRef
     {
         [DataMember(Name = "@name")]
@@ -49,12 +59,21 @@ namespace ArinWhois.Model
         public string Handle { get; set; }
     }
 
-    public class NetBlocks
+    /// <summary>
+    /// The customer reference of an ARIN Whois query.
+    /// </summary>
+    public class CustomerRef
     {
-        [DataMember(Name = "netBlock")]
-        public NetBlock NetBlock { get; set; }  // damn it, API sometimes sends an array here
-   }
+        [DataMember(Name = "@name")]
+        public string Name { get; set; }
 
+        [DataMember(Name = "@handle")]
+        public string Handle { get; set; }
+    }
+
+    /// <summary>
+    /// The netblock content of an ARIN Whois query.
+    /// </summary>
     public class NetBlock
     {
         [DataMember(Name = "cidrLength")]

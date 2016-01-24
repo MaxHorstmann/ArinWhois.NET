@@ -2,12 +2,9 @@
 
 namespace ArinWhois.Model
 {
-    internal class ResponseOuter
-    {
-        [DataMember(Name = "ns4:pft")]
-        public Response ResponseInner { get; set; }
-    }
-
+    /// <summary>
+    /// A response from the ARIN Whois server.
+    /// </summary>
     public class Response
     {
         [DataMember(Name = "net")]
@@ -18,6 +15,8 @@ namespace ArinWhois.Model
 
         [DataMember(Name = "poc")]
         public PointOfContact PointOfContact { get; set; }
-    }
 
+        [DataMember(Name = "customer")]
+        public Customer Customer { get; set; }
+    }
 }

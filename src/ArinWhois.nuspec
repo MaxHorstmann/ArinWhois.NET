@@ -1,16 +1,26 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>ArinWhois</id>
-    <version>0.2</version>
-    <title>ArinWhois.NET</title>
-    <authors>Max Horstmann</authors>
-    <owners>Max Horstmann</owners>
-    <projectUrl>https://github.com/MaxHorstmann/ArinWhois.NET</projectUrl>
+    <id>ArinWhois-VS2015</id>
+    <version>20160120.1</version>
+    <title>ArinWhois.NET-VS2015</title>
+    <authors>Max Horstmann, Keith J. Jones</authors>
+    <owners>Max Horstmann, Keith J. Jones</owners>
+    <projectUrl>https://github.com/keithjjones/ArinWhois.NET</projectUrl>
+	<licenseUrl>https://github.com/keithjjones/ArinWhois.NET/blob/master/License.md</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.NET client for ARIN's Whois RESTful Web Service, the API to accessing ARIN's Whois data.</description>
-    <releaseNotes>Pre-Relase version</releaseNotes>
-    <copyright>Copyright Max Horstmann, 2014</copyright>
-    <tags>ARIN</tags>
+    <description>.NET client for ARIN's Whois RESTful Web Service, the API to accessing ARIN's Whois data.  Fork of the ArinWhois.NET project for VS 2015.</description>
+    <releaseNotes>
+		20160120.1	Updated assembly information.
+		20160119.4	Edited assembly information.
+		20160119.3	Enabled IntelliSense XML output.
+		20160119.2	Added more IntelliSense information.
+		20160119.1	Added IntelliSense information.
+		20160118.1	Changed link to license file.
+		20160115.1	Changed the name to be slightly different than the original.
+		20160114.6	Recent Stable Build
+	</releaseNotes>
+    <copyright>Copyright Max Horstmann, 2014; Copyright Keith Jones, 2016</copyright>
+    <tags>ARIN Whois</tags>
   </metadata>
 </package>
