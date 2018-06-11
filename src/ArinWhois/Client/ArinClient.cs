@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using ArinWhois.Model;
-using Jil;
+using Newtonsoft.Json;
 
 namespace ArinWhois.Client
 {
     public class ArinClient
     {
-        private const string BaseUrl = "http://whois.arin.net/rest";
-
-        private static readonly Options DeserializationOptions = Options.ISO8601;
-
         public enum ResourceType
         {
             Unknown = 0,
@@ -20,22 +17,26 @@ namespace ArinWhois.Client
             PointOfContact = 3
         }
 
+        private const string BaseUrl = "http://whois.arin.net/rest";
+
+        private readonly HttpClient _httpClient = new HttpClient();
+
+        private readonly JsonSerializerSettings _serializerSettings =
+            new JsonSerializerSettings {DateFormatHandling = DateFormatHandling.IsoDateFormat};
+
         public async Task<Response> QueryIpAsync(IPAddress ip)
         {
-            using (var wc = new WebClient())
+            try
             {
-                try
-                {
-                    var query = $"ip/{ip}";
-                    var url = GetRequestUrl(query);
-                    var jsonString = await wc.DownloadStringTaskAsync(url);
-                    var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
-                    return deser;
-                }
-                catch
-                {
-                    return null;
-                }
+                var query = $"ip/{ip}";
+                var url = GetRequestUrl(query);
+                var jsonString = await _httpClient.GetStringAsync(url);
+                var deser = JsonConvert.DeserializeObject<Response>(jsonString, _serializerSettings);
+                return deser;
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -43,30 +44,22 @@ namespace ArinWhois.Client
         {
             if (resourceType != ResourceType.Organization) throw new NotImplementedException(); // coming soon
 
-            using (var wc = new WebClient())
+            try
             {
-                try
-                {
-                    var query = string.Format("org/{0}/pft", handle);
-                    var jsonString = await wc.DownloadStringTaskAsync(GetRequestUrl(query));
-                    var deser = JSON.Deserialize<ResponseOuter>(jsonString, DeserializationOptions);
-                    return deser.ResponseInner;
-                }
-                catch
-                {
-                    return null;
-                }
+                var query = $"org/{handle}/pft";
+                var jsonString = await _httpClient.GetStringAsync(GetRequestUrl(query));
+                var deser = JsonConvert.DeserializeObject<ResponseOuter>(jsonString, _serializerSettings);
+                return deser.ResponseInner;
+            }
+            catch
+            {
+                return null;
             }
         }
 
-
         private static Uri GetRequestUrl(string query)
         {
-            return new Uri(string.Format("{0}/{1}.json", BaseUrl, query));
+            return new Uri($"{BaseUrl}/{query}.json");
         }
-        
-
-
     }
-
 }

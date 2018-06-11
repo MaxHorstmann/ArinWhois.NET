@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace ArinWhois.Model
 {
     public class Organization
     {
-        [DataMember(Name = "@termsOfUse")]
+        [JsonProperty("@termsOfUse")]
         public string TermsOfUse { get; set; }
 
-        [DataMember(Name = "registrationDate")]
+        [JsonProperty("registrationDate")]
         public ValueWrapper<DateTime> RegistrationDate { get; set; }
 
-        [DataMember(Name = "name")]
+        [JsonProperty("name")]
         public ValueWrapper<string> Name { get; set; }
 
-        [DataMember(Name = "postalCode")]
+        [JsonProperty("postalCode")]
         public ValueWrapper<string> PostalCode { get; set; }
 
-        [DataMember(Name = "city")]
+        [JsonProperty("city")]
         public ValueWrapper<string> City { get; set; }
 
-        [DataMember(Name = "updateDate")]
+        [JsonProperty("updateDate")]
         public ValueWrapper<DateTime> UpdateDate { get; set; }
     }
 }

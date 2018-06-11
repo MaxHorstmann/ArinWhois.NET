@@ -1,82 +1,77 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace ArinWhois.Model
 {
     public class Network
     {
-        [DataMember(Name = "@termsOfUse")]
+        [JsonProperty("@termsOfUse")]
         public string TermsOfUse { get; set; }
 
-        [DataMember(Name = "registrationDate")]
+        [JsonProperty("registrationDate")]
         public ValueWrapper<DateTime> RegistrationDate { get; set; }
 
-        [DataMember(Name = "ref")]
+        [JsonProperty("ref")]
         public ValueWrapper<string> Ref { get; set; }
 
-        [DataMember(Name = "handle")]
+        [JsonProperty("handle")]
         public ValueWrapper<string> Handle { get; set; }
 
-        [DataMember(Name = "name")]
+        [JsonProperty("name")]
         public ValueWrapper<string> Name { get; set; }
 
-        [DataMember(Name = "startAddress")]
+        [JsonProperty("startAddress")]
         public ValueWrapper<string> StartAddress { get; set; }
 
-        [DataMember(Name = "endAddress")]
+        [JsonProperty("endAddress")]
         public ValueWrapper<string> EndAddress { get; set; }
 
-        [DataMember(Name = "updateDate")]
+        [JsonProperty("updateDate")]
         public ValueWrapper<DateTime> UpdateDate { get; set; }
 
-        [DataMember(Name = "version")]
+        [JsonProperty("version")]
         public ValueWrapper<string> Version { get; set; }
 
-        [DataMember(Name = "netBlocks")]
+        [JsonProperty("netBlocks")]
         public NetBlocks NetBlocks { get; set; }
 
-        [DataMember(Name = "orgRef")]
+        [JsonProperty("orgRef")]
         public OrgRef OrgRef { get; set; }
-
     }
 
     public class OrgRef
     {
-        [DataMember(Name = "@name")]
+        [JsonProperty("@name")]
         public string Name { get; set; }
 
-        [DataMember(Name = "@handle")]
+        [JsonProperty("@handle")]
         public string Handle { get; set; }
     }
 
     public class NetBlocks
     {
-        [DataMember(Name = "netBlock")]
-        public NetBlock NetBlock { get; set; }  // damn it, API sometimes sends an array here
-   }
+        [JsonProperty("netBlock")]
+        public NetBlock NetBlock { get; set; } // damn it, API sometimes sends an array here
+    }
 
     public class NetBlock
     {
-        [DataMember(Name = "cidrLength")]
+        [JsonProperty("cidrLength")]
         public ValueWrapper<string> CidrLength { get; set; }
 
-        [DataMember(Name = "type")]
+        [JsonProperty("type")]
         public ValueWrapper<string> Type { get; set; }
 
-        [DataMember(Name = "description")]
+        [JsonProperty("description")]
         public ValueWrapper<string> Description { get; set; }
 
-        [DataMember(Name = "startAddress")]
+        [JsonProperty("startAddress")]
         public ValueWrapper<string> StartAddress { get; set; }
 
-        [DataMember(Name = "endAddress")]
+        [JsonProperty("endAddress")]
         public ValueWrapper<string> EndAddress { get; set; }
 
-        [IgnoreDataMember]
-        public string Cidr
-        {
-            get { return string.Format("{0}/{1}", StartAddress, CidrLength); }
-        }
+        [JsonIgnore]
+        public string Cidr => $"{StartAddress}/{CidrLength}";
     }
-    
 }

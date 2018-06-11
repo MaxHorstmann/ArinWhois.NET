@@ -1,10 +1,10 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace ArinWhois.Model
 {
     public class ValueWrapper<T>
     {
-        [DataMember(Name = "$")]
+        [JsonProperty("$")]
         public T Value { get; set; }
 
         public override string ToString()

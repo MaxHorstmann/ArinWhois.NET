@@ -1,23 +1,22 @@
-﻿using System.Runtime.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace ArinWhois.Model
 {
     internal class ResponseOuter
     {
-        [DataMember(Name = "ns4:pft")]
+        [JsonProperty("ns4:pft")]
         public Response ResponseInner { get; set; }
     }
 
     public class Response
     {
-        [DataMember(Name = "net")]
+        [JsonProperty("net")]
         public Network Network { get; set; }
 
-        [DataMember(Name = "org")]
+        [JsonProperty("org")]
         public Organization Organization { get; set; }
 
-        [DataMember(Name = "poc")]
+        [JsonProperty("poc")]
         public PointOfContact PointOfContact { get; set; }
     }
-
 }
