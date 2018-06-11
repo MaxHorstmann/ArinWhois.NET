@@ -26,7 +26,7 @@ namespace ArinWhois.Client
             {
                 try
                 {
-                    var query = string.Format("ip/{0}", ip);
+                    var query = $"ip/{ip}";
                     var url = GetRequestUrl(query);
                     var jsonString = await wc.DownloadStringTaskAsync(url);
                     var deser = JSON.Deserialize<Response>(jsonString, DeserializationOptions);
